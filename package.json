@@ -1,0 +1,27 @@
+{
+  "name": "violet_trailer",
+  "version": "1.0.0",
+  "description": "用 koa2 框架搭建的一个预告片网站",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XiaoLuo01/violet_trailer.git"
+  },
+  "keywords": [
+    "movie",
+    "trailer"
+  ],
+  "author": "Carol",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/XiaoLuo01/violet_trailer/issues"
+  },
+  "homepage": "https://github.com/XiaoLuo01/violet_trailer#readme",
+  "dependencies": {
+    "koa": "^2.11.0"
+  }
+}
