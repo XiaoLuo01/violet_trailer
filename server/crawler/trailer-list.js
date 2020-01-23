@@ -58,6 +58,6 @@ const  sleep = time => new Promise(resolve => {
 
   browser.close()
 
-  console.log('result', result)
-
+  process.send({result})
+  process.exit(0)
 })()
