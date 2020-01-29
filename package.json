@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/XiaoLuo01/violet_trailer#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "ejs": "^3.0.1",
     "koa": "^2.11.0",
     "koa-views": "^6.2.1",

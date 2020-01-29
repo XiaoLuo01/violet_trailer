@@ -6,7 +6,10 @@ const Schema = mongoose.Schema
 const Mixed = Schema.Types.Mixed  // 一个啥都可以放的 SchemaType
 
 const movieSchema = new Schema({
-  doubanId: String,  // 豆瓣id
+  doubanId: {
+    unique: true,
+    type: String
+  },  // 豆瓣id
   rate: Number,  // 评分
   title: String, // 标题
   summary: String, // 简介
@@ -33,6 +36,16 @@ const movieSchema = new Schema({
       default: Date.now()
     }
   }
+})
+
+movieSchema.pre('save', next => {
+  // 判断是不是新数据
+  if (this.isNew) {
+    this.meta.createdAt = this.meta.updatedAt = Date.now()
+  } else {
+    this.meta.updatedAt = Date.now()
+  }
+  next()
 })
 
 // 创建模型
