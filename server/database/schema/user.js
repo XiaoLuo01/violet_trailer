@@ -1,5 +1,5 @@
 /**
- * 电影数据模型
+ * 登录数据模型
  */
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema

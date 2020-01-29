@@ -3,13 +3,17 @@
  */
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const Mixed = Schema.Types.Mixed  // 一个啥都可以放的 SchemaType
+const { Mixed, ObjectId } = Schema.Types  // Mixed 是一个啥都可以放的 SchemaType
 
 const movieSchema = new Schema({
   doubanId: {
     unique: true,
     type: String
   },  // 豆瓣id
+  category: [{
+    type: ObjectId,
+    ref: 'category'
+  }], // 电影分类
   rate: Number,  // 评分
   title: String, // 标题
   summary: String, // 简介
@@ -49,4 +53,4 @@ movieSchema.pre('save', next => {
 })
 
 // 创建模型
-mongoose.model('Moive', movieSchema)
+mongoose.model('Movie', movieSchema)

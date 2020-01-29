@@ -24,6 +24,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "ejs": "^3.0.1",
+    "glob": "^7.1.6",
     "koa": "^2.11.0",
     "koa-views": "^6.2.1",
     "mongoose": "^5.8.9",
