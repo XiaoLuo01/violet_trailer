@@ -42,7 +42,7 @@ const movieSchema = new Schema({
   }
 })
 
-movieSchema.pre('save', next => {
+movieSchema.pre('save', function (next) {
   // 判断是不是新数据
   if (this.isNew) {
     this.meta.createdAt = this.meta.updatedAt = Date.now()

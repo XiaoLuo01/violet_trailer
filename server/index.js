@@ -10,9 +10,7 @@ const { connect, initSchemas } = require('./database/init')
 
   initSchemas()
 
-  const Movie = mongoose.model('Movie')
-  const movies = await Movie.find({})
-  console.log('movies: ', movies)
+  require('./tasks/api')
 })()
 
 // 静态资源文件加载

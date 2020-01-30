@@ -38,13 +38,6 @@ exports.connect = () => {
     })
   
     mongoose.connection.once('open', () => {
-      const Dog = mongoose.model('Dog', {name: String})
-      const dog1 = new Dog({name: '阿尔法'})
-      
-      dog1.save().then(() => {
-        console.log('wang')
-      })
-
       resolve()
       console.log('MongoDB Connected successfully !')
     })
