@@ -15,7 +15,7 @@ const router = require('./routes/index')
 })()
 
 app.use(router.routes())
-  .use(router.allowedMethods())
+  // .use(router.allowedMethods())
 
 // 静态资源文件加载
 app.use(views(resolve(__dirname, './views'), {
