@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/XiaoLuo01/violet_trailer#readme",
   "dependencies": {
+    "antd": "^3.0.0",
     "bcryptjs": "^2.4.3",
     "ejs": "^3.0.1",
     "glob": "^7.1.6",
@@ -37,8 +38,10 @@
     "puppeteer": "^2.0.0",
     "qiniu": "^7.3.0",
     "ramda": "^0.26.1",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
+    "react-markdown": "^4.3.1",
+    "react-router-dom": "^4.2.2",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.8"
   },
