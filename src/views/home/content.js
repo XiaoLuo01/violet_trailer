@@ -20,10 +20,39 @@ export default class Content extends Component {
     super(props);
   }
 
-  _showModal = () => {
+  _showModal = (movie) => {
     this.setState({
       visible: true
     })
+
+    const video = site + movie.videoKey
+    const pic = site + movie.coverKey
+
+    if(!this.player) {
+      setTimeout(() => {
+        this.player = new DPlayer({
+          container: document.getElementsByClassName('videoModal')[0],
+          screenshot: true,
+          autoplay: true,
+          video: {
+            url: video,
+            pic: pic,
+            thumbnails: pic
+          }
+        })
+      }, 500)
+    } else {
+      if (this.player.video.currentSrc !== video) {
+        this.player.switchVideo({
+          url: video,
+          autoplay: true,
+          pic: pic,
+          type: 'auto'
+        })
+      }
+
+      this.player.play()
+    }
   }
 
   _jumeToDetail = () => {
