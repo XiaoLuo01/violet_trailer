@@ -3,9 +3,9 @@ const mongoose = require('mongoose')
 const app = new Koa()
 const views = require('koa-views')
 const { resolve } = require('path')
-const { connect, initSchemas } = require('./database/init')
+const { connect, initSchemas, initAdmin } = require('./database/init')
 const R = require('ramda')
-const MIDDLEWARES = ['router', 'parcel']
+const MIDDLEWARES = ['database', 'general', 'router', 'parcel']
 
 const useMiddlewares = (app) => {
   R.map(R.compose(
@@ -21,6 +21,7 @@ const useMiddlewares = (app) => {
   await connect()
 
   initSchemas()
+  initAdmin()
 
   // require('./tasks/movie')
   // require('./tasks/api')

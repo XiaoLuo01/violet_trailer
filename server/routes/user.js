@@ -1,12 +1,13 @@
 const { controller, get, post, put } = require('../decorator/router')
 const { checkPassword } = require('../service/user')
 
-@controller('/api/v0/movies')
+@controller('/admin')
 export class userController {
-  @post('/')
+  @post('/login')
   async login(ctx, next) {
-    const { email, password } = ctx.query
+    const { email, password } = ctx.request.body
     const matchData = await checkPassword(email, password)
+    console.log(matchData)
 
     if (!matchData.user) {
       return (ctx.body = {

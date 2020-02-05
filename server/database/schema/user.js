@@ -62,20 +62,19 @@ userSchema.pre('save', function (next) {
 
 //使用 pre中间件在用户信息存储前进行密码加密
 userSchema.pre('save', function (next) {
-  if(!this.isModified('password')) return next()
+  let user = this
+  if(!user.isModified('password')) return next()
 
   bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
     if (err) return next(err)
 
-    bcrypt.hash(this.password, salt, (error, hash) => {
+    bcrypt.hash(user.password, salt, (error, hash) => {
       if (error) return next(error)
 
-      this.password = hash
+      user.password = hash
       next()
     })
   })
-
-  next()
 })
 
 // 实例方法
@@ -83,9 +82,8 @@ userSchema.methods = {
   // 对比密码
   comparePassword: (_password, password) => {
     return new Promise((resolve, reject) => {
-      bcrypt.compare(_password, password, (err, isMatch) => {
-        if(!err) resolve(isMatch)
-        else reject(err)
+      bcrypt.compare(_password, password).then((res) => {
+        resolve(res)
       })
     })
   },
