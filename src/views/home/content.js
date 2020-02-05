@@ -1,0 +1,95 @@
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import { Button, Card, Tag, Row, Col, Spin, Modal, Badge, Icon } from 'antd'
+import moment from 'moment'
+import 'moment/locale/zh-cn'
+
+moment.locale('zh-cn')
+
+const { Meta } = Card
+const DPlayer = window.DPlayer
+const site = 'http://q4pqu9u9s.bkt.clouddn.com/'
+const gridStyle = {
+  width: '25%',
+  textAlign: 'center',
+}
+
+export default class Content extends Component {
+  state = { visible: false }
+  constructor(props) {
+    super(props);
+  }
+
+  _showModal = () => {
+    this.setState({
+      visible: true
+    })
+  }
+
+  _jumeToDetail = () => {
+    const { url } = this.props
+    url && window.open(url)
+  }
+
+  _handleClose = (e) => {
+    if (this.player && this.player.pause) this.player.pause()
+  }
+
+  _handleCancel = (e) => {
+    this.setState({
+      visible: false
+    })
+  }
+
+  _renderContent = () => {
+    const { movies } = this.props
+
+    return (
+      <div style={{ padding: '30px' }}>
+        <Row>
+          {
+            movies.map((it, i) => (
+              <Col key={i} xl={{span: 6}} lg={{span: 8}} md={{span: 12}} sm={{span: 24}} style={{ marginBottom: '8px' }}>
+                <Card bordered={false} hoverable style={{ width: '100%' }}
+                actions={[
+                  <Badge>
+                    <Icon style={{marginRight: '2px'}} type="clock-circle" />
+                    {moment(it.meta.createdAt).fromNow(true)}前更新
+                  </Badge>,
+                  <Badge>
+                    <Icon style={{marginRight: '2px'}} type="star" />
+                    {it.rate} 分
+                  </Badge>
+                ]}
+                cover={<img onClick={() => this._showModal(it)} alt="example" src={site + it.posterKey + '?imageMogr2/thumbnail/x1680/crop/1080x1600'} />}>
+                  <Meta 
+                  style={{height: '202px', overflow: 'hidden'}} 
+                  title={<Link to={`/detail/${it._id}`}>{it.title}</Link>} 
+                  onClick={this._jumeToDetail} 
+                  description={<Link to={`/detail/${it._id}`}>{it.summary}</Link>} />
+                </Card>
+              </Col> 
+            ))
+          }
+        </Row>
+        <Modal 
+          className='videoModal'
+          footer={null}
+          afterClose={this._handleClose}
+          visible={this.state.visible}
+          onCancel={this._handleCancel}>
+          <Spin size="large" />
+        </Modal>
+      </div>
+    )
+  }
+
+  render () {
+    return (
+      <div style={{ padding: 10 }}>
+        { this._renderContent() } 
+      </div>
+    )
+  }
+  
+}

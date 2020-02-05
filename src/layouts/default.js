@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 import navRoutes from "./../nav";
 import { Menu, Spin, Icon } from 'antd';
 
-const getMenuContent = ({path, name}) => {
-  <a href={paht ? path : '/'} style={{color: '#fff2e8'}}>{name}</a>
-}
+const getMenuContent = ({ path, name }) => (
+  <a href={path ? path : '/'} style={{color: '#fff2e8'}}>
+    {name}
+  </a>
+)
 
 export default class LayoutDefault extends Component {
-  constructor() {
+  constructor(props) {
     super(props)
     this.state = {
       loading: false,
@@ -21,12 +23,12 @@ export default class LayoutDefault extends Component {
   }
 
   componentWillUnmount() {
-    windo.__LOADING__ = null
+    window.__LOADING__ = null
   }
 
   matchRouteName = this.props.match ? navRoutes.find(e => e.name === this.props.match.params.type) ? navRoutes.find(e => e.name === this.props.match.params.type).name : '全部' : navRoutes[0].name
 
-  toggleLoading = (status =false, tip='再等一下下嘛~') => {
+  toggleLoading = (status = false, tip = '再等一下下嘛~') => {
     this.setState({
       loading: status,
       tip
@@ -44,11 +46,11 @@ export default class LayoutDefault extends Component {
               <a href={'/'} className='hover-scale logo-text' style={{color: '#fff2e8'}} >Violet 预告片网站</a>
           </Menu.Item>
           {
-            navRoutes.map((e, i) => {
-              <Menu.item key={e.name}>
+            navRoutes.map((e, i) => (
+              <Menu.Item key={e.name}>
                 { getMenuContent({...e}) }
-              </Menu.item>
-            })
+              </Menu.Item>
+            ))
           }
         </Menu>
         <Spin spinning={loading} tip={tip} wrapperClassName='content-spin full'>
