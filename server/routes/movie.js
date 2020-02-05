@@ -8,7 +8,10 @@ export class movieController {
     const { type, year } = ctx.query
     const movies = await getAllMovies(type, year)
 
-    ctx.body = { movies }
+    ctx.body = { 
+      success: true,
+      data: movies
+     }
   }
 
   @get('/:id')

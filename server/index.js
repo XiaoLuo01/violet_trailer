@@ -22,7 +22,10 @@ const useMiddlewares = (app) => {
 
   initSchemas()
 
+  // require('./tasks/movie')
   // require('./tasks/api')
+  // require('./tasks/trailer')
+  // require('./tasks/qiniu')
   await useMiddlewares(app)
   app.listen(2233) 
 })()
