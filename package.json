@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/XiaoLuo01/violet_trailer#readme",
   "dependencies": {
-    "antd": "^3.0.0",
+    "antd": "^3.26.8",
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "ejs": "^3.0.1",

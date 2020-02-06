@@ -46,12 +46,14 @@ export default class Home extends Component {
       {
         title: '评分',
         dataIndex: 'rate',
-        key: 'rate'
+        key: 'rate',
+        width: 80
       },
       {
         title: '更新时间',
         dataIndex: 'meta',
         key: 'meta',
+        width: 100,
         render: (text, record) => (<span>{moment(record.meta.createdAt).fromNow(true)} 前</span>)
       },
       {
@@ -63,6 +65,7 @@ export default class Home extends Component {
         title: '类型',
         dataIndex: 'movieTypes',
         key: 'movieTypes',
+        width: 100,
         render: (text, record) => (
           record.movieTypes.map((it, i) => (
             <p key={i}>{it}</p>
@@ -87,6 +90,7 @@ export default class Home extends Component {
       {
         title: '详情',
         key: '_id',
+        width: 80,
         render: (text, record) => <a href={`/detail/${record._id}`} target={'_blank'}>详情</a>
       },
       {
@@ -110,7 +114,7 @@ export default class Home extends Component {
   _getAllMovies = () => {
     request({
       method: 'get',
-      url: '/movies/all'
+      url: '/api/v0/movies'
     }).then(res => {
       this.setState({
         dataSource: res
