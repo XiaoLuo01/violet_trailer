@@ -34,3 +34,11 @@ export const getRelativeMovies = async (movie) => {
 
   return movies
 }
+
+export const findAndRemove = async (id) => {
+  let movie = await Movie.findOne({_id: id})
+
+  if (movie) {
+    await movie.remove()
+  }
+}

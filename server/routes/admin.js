@@ -1,6 +1,6 @@
-const { controller, get, post, put, auth, admin,required } = require('../decorator/router')
+const { controller, get, post, put, auth, admin,required, del } = require('../decorator/router')
 const { checkPassword } = require('../service/user')
-const { getAllMovies } = require('../service/movie')
+const { getAllMovies, findAndRemove } = require('../service/movie')
 
 @controller('/admin')
 export class adminController {
@@ -24,7 +24,6 @@ export class adminController {
   async login(ctx, next) {
     const { email, password } = ctx.request.body
     const matchData = await checkPassword(email, password)
-    console.log(matchData)
 
     if (!matchData.user) {
       return (ctx.body = {
@@ -49,5 +48,20 @@ export class adminController {
       success: false,
       err: '用户不存在或者密码不正常'
     })
+  }
+
+  @del('/movies')
+  @required({
+    query:['id']
+  })
+  async remove(ctx, next) {
+    const id = ctx.query.id
+    const movie = await findAndRemove(id)
+    const movies = await getAllMovies()
+
+    ctx.body = {
+      data: movies,
+      success: true
+    }
   }
 }

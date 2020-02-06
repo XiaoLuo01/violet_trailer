@@ -22,7 +22,7 @@ const _request = (params = {}, fn = () => {}) => {
           .catch(err => {
             fn(false)
             message.error(String(err || '网络错误'))
-            console.error(err)
+            console.log(err)
             throw err
           })
 }
