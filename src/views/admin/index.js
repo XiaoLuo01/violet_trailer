@@ -114,7 +114,7 @@ export default class Home extends Component {
   _getAllMovies = () => {
     request({
       method: 'get',
-      url: '/api/v0/movies'
+      url: '/admin/movie/list'
     }).then(res => {
       this.setState({
         dataSource: res

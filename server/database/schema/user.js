@@ -10,6 +10,10 @@ const MAX_LOGIN_ATTEMPTS = 5  // 最大登录失败尝试连接次数
 const LOCK_TIME = 2 * 60 * 60 * 1000 // 锁定时间
 
 const userSchema = new Schema({
+  role: {
+    type: String,
+    default: 'user'
+  },
   username: {
     unique: true,  // 设置字段唯一
     required: true,
